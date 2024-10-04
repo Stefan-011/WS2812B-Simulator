@@ -1,0 +1,22 @@
+{
+  "name": "ws2812b-simulator",
+  "version": "1.0.0",
+  "description": "\"# WS2812B-Simulator\"",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stefan-011/WS2812B-Simulator.git"
+  },
+  "author": "Stefan Stanimirovic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stefan-011/WS2812B-Simulator/issues"
+  },
+  "homepage": "https://github.com/Stefan-011/WS2812B-Simulator#readme",
+  "devDependencies": {
+    "electron": "^32.1.2"
+  }
+}

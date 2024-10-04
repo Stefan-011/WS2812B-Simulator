@@ -1,1 +1,1 @@
-"# WS2812B-Simulator" 
+WS2812B-Simulator

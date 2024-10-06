@@ -1,4 +1,5 @@
-import { toBinary, toASCII } from "./converters.js";
+import { toBinary, toASCII, toRGB } from "./converters.js";
+import { RGB } from "./classes/rgb.js";
 const number_of_bits = 8;
 let outputTester = "";
 toBinary(155, number_of_bits).then(
@@ -14,3 +15,8 @@ toBinary(155, number_of_bits).then(
     console.log(error_code);
   }
 );
+
+const send = [
+  1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+];
+console.log(toRGB(send, 8));

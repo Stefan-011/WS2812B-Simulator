@@ -2,44 +2,51 @@ import { toBinary, toASCII, toRGB } from "./converters.js";
 import { linkedlist } from "./classes/linkedList.js";
 import { chip } from "./classes/chip.js";
 import { RGB } from "./classes/rgb.js";
-const number_of_bits = 8;
-let outputTester = "";
-// toBinary(155, number_of_bits).then(
-//   (binary_arr) => {
-//     console.log(binary_arr);
-//     toASCII(binary_arr).forEach((element) => {
-//       outputTester += element;
-//     });
-//     console.log(toASCII(binary_arr));
-//     console.log(outputTester);
-//   },
-//   (error_code) => {
-//     console.log(error_code);
-//   }
-// );
-
-const send = [
-  1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1,
-];
-// console.log(toRGB(send, 8));
-const serial_numers = [504, 631, 642, 894];
-const test_list = new linkedlist();
-for (let i = 0; i < 4; i++) {
-  const new_node = new chip(serial_numers[i]);
-  test_list.addNode(new_node);
-}
-
-let curr_node = test_list.getHead();
-while (curr_node !== null) {
-  console.log(curr_node.getSerialNumber());
-  curr_node = curr_node.getNext();
-}
-let iterator = 0;
-let sender_interval = setInterval(() => {
-  console.log(`iterator ${iterator} and arr size ${test_list.getSize()}`);
-  if (iterator >= test_list.getSize()) clearInterval(sender_interval);
-  send.forEach((bit) => {
-    test_list.getHead().receive_bit(bit);
-  });
-  iterator++;
-}, 5000);
+const num_of_RGB = 3;
+const bit_size = 8;
+const NUM_OF_CHIPS = 16;
+window.onload = () => {
+  const strip = new linkedlist();
+  let color_bits = [];
+  let red = new RGB();
+  red.setFullColor(255, 0, 0);
+  for (let i = 0; i < num_of_RGB; i++) {
+    switch (i) {
+      case 0:
+        toBinary(red.r, bit_size).then((bit_array) => {
+          bit_array.forEach((bit) => {
+            color_bits.push(bit);
+          });
+        });
+        break;
+      case 1:
+        toBinary(red.g, bit_size).then((bit_array) => {
+          bit_array.forEach((bit) => {
+            color_bits.push(bit);
+          });
+        });
+        break;
+      case 2:
+        toBinary(red.b, bit_size).then((bit_array) => {
+          bit_array.forEach((bit) => {
+            color_bits.push(bit);
+          });
+        });
+        break;
+    }
+  }
+  for (let i = 0; i < NUM_OF_CHIPS; i++) {
+    const new_chip = new chip(i * 100);
+    strip.addNode(new_chip);
+  }
+  let curr_chip = strip.getHead();
+  let iterator = 1;
+  let sender_inteval = setInterval(() => {
+    if (NUM_OF_CHIPS <= iterator) clearInterval(sender_inteval);
+    color_bits.forEach((bit) => {
+      curr_chip.receive_bit(bit);
+    });
+    curr_chip = curr_chip.getNext();
+    iterator++;
+  }, 1000);
+};

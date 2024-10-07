@@ -1,5 +1,6 @@
 import { node } from "./linkedList.js";
 import { toASCII, toRGB } from "../converters.js";
+import { RGB } from "./rgb.js";
 export class chip extends node {
   #RGB_BINARY = [];
   #SERIAL_NUMER;
@@ -21,12 +22,20 @@ export class chip extends node {
       this.#conduct(bit);
       return;
     }
-    if (this.#RGB_BINARY.length == 24) this.#CONDUCTOR = true;
+    if (this.#RGB_BINARY.length == 24) {
+      this.#CONDUCTOR = true;
+      this.#light_up();
+    }
   }
 
   #conduct(bit) {
-    this._NEXT.receive_bit(bit);
+    if (this._NEXT !== null) this._NEXT.receive_bit(bit);
   }
 
-  light_up() {}
+  #light_up() {
+    let color = new RGB();
+    color = toRGB(this.#RGB_BINARY, 8);
+    console.log("serial number: " + this.#SERIAL_NUMER);
+    console.log(color);
+  }
 }

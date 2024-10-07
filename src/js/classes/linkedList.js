@@ -13,23 +13,30 @@ export class node {
 
 export class linkedlist {
   #HEAD;
+  #SIZE;
 
   constructor() {
     this.#HEAD = null;
+    this.#SIZE = 0;
   }
   getHead() {
     return this.#HEAD;
+  }
+  getSize() {
+    return this.#SIZE;
   }
 
   addNode(new_node) {
     if (this.#HEAD == null) {
       this.#HEAD = new_node;
+      this.#SIZE++;
       return;
     }
     let curr_node = this.#HEAD;
     while (curr_node !== null) {
       if (curr_node.getNext() === null) {
         curr_node.setNext(new_node);
+        this.#SIZE++;
         return;
       }
       curr_node = curr_node.getNext();
@@ -43,6 +50,7 @@ export class linkedlist {
       if (curr_node.getSerialNumber() === serial_num) {
         prev_node.setNext(curr_node.getNext());
         curr_node = null;
+        this.#SIZE--;
         return;
       }
       prev_node = curr_node;

@@ -8,8 +8,8 @@
 body {
   margin: 0;
   background-color: var(--background-color);
-  /*  width: 100vh;
-  height: 100vh;*/
+  /*  width: 100vh;*/
+  height: 100vh;
   color: var(--secondary-color);
   display: flex;
   flex-direction: column;
@@ -57,4 +57,77 @@ body {
 
 .title-bar button {
   -webkit-app-region: no-drag;
+}
+
+#content {
+  background-color: rgba(255, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+#simulator-table {
+  background-color: rgba(0, 255, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+#component-area {
+  background-color: blueviolet;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+}
+
+#led-strip {
+  background-color: gold;
+  color: black;
+  width: 90%;
+  height: min-content;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.chip {
+  margin: 1rem 1rem;
+  border: 2px solid black;
+  height: 4rem;
+  width: 4rem;
+}
+
+#cable-area {
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cable {
+  width: 2rem;
+  height: 0.6rem;
+}
+
+#cable-r {
+  background-color: red;
+}
+
+#cable-b {
+  background-color: black;
+}
+
+#cable-g {
+  background-color: green;
 }

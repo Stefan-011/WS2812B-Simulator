@@ -44,7 +44,7 @@ function draw_zero(ctx, canvas, position) {
   ctx.stroke();
 }
 
-export function clear_canvas() {
+export function clear_signal() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 

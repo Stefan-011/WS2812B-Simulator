@@ -1,6 +1,7 @@
 import { node } from "./linkedList.js";
 import { toASCII, toRGB } from "../converters.js";
 import { RGB } from "./rgb.js";
+import { drawBinarySignal, clear_canvas } from "../drawing_signal.js";
 export class chip extends node {
   #RGB_BINARY = [];
   #SERIAL_NUMER;
@@ -38,6 +39,10 @@ export class chip extends node {
     if (this._NEXT !== null) this._NEXT.receive_bit(bit);
   }
 
+  #show_signal(signal) {
+    drawBinarySignal(signal);
+  }
+
   #light_up() {
     let color = new RGB();
     color = toRGB(this.#RGB_BINARY, 8);
@@ -46,10 +51,12 @@ export class chip extends node {
 
     const chip_diode = document.getElementById(`${this.#SERIAL_NUMER}`);
     chip_diode.style.backgroundColor = `rgb(${color.r},${color.g},${color.b})`;
+    this.#show_signal(this.#RGB_BINARY);
   }
 
   clear_color() {
     const chip_diode = document.getElementById(`${this.#SERIAL_NUMER}`);
     chip_diode.style.backgroundColor = `transparent`;
+    clear_canvas();
   }
 }

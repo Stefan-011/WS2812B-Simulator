@@ -8,8 +8,8 @@ let mainWindow;
 
 app.on("ready", () => {
   mainWindow = new BrowserWindow({
-    minHeight: 700,
-    minWidth: 700,
+    minHeight: 400,
+    minWidth: 400,
     transparent: false,
     frame: false,
     webPreferences: {

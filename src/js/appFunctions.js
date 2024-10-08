@@ -2,9 +2,12 @@ import { toBinary, toASCII, toRGB } from "./converters.js";
 import { linkedlist } from "./classes/linkedList.js";
 import { chip } from "./classes/chip.js";
 import { RGB } from "./classes/rgb.js";
+
 const num_of_RGB = 3;
 const bit_size = 8;
 const NUM_OF_CHIPS = 16;
+export const SIGNAL_SIZE = 24;
+
 window.onload = () => {
   const strip = new linkedlist();
   let color_bits = [];
@@ -46,16 +49,15 @@ window.onload = () => {
     color_bits.forEach((bit) => {
       curr_chip.receive_bit(bit);
     });
-    curr_chip = curr_chip.getNext();
     iterator++;
   }, 1000);
 
-  let curr_chip2 = strip.getHead();
-  setTimeout(() => {
-    clearInterval(sender_inteval);
-    while (curr_chip2 != null) {
-      curr_chip2.clear_color();
-      curr_chip2 = curr_chip2.getNext();
-    }
-  }, 4000);
+  // let curr_chip2 = strip.getHead();
+  // setTimeout(() => {
+  //   clearInterval(sender_inteval);
+  //   while (curr_chip2 != null) {
+  //     curr_chip2.clear_color();
+  //     curr_chip2 = curr_chip2.getNext();
+  //   }
+  // }, 4000);
 };

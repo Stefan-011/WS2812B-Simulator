@@ -67,6 +67,7 @@ body {
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  overflow: scroll;
 }
 
 #simulator-table {
@@ -131,4 +132,17 @@ body {
 
 #cable-g {
   background-color: green;
+}
+
+#data-area {
+  width: 90%;
+  height: 4rem;
+}
+
+#binaryChart {
+  background-color: black;
+  height: 8rem;
+  padding: 0 8rem;
+  width: 25rem;
+  border: #373737 1.2rem solid;
 }

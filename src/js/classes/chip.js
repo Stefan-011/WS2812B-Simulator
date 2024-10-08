@@ -47,4 +47,9 @@ export class chip extends node {
     const chip_diode = document.getElementById(`${this.#SERIAL_NUMER}`);
     chip_diode.style.backgroundColor = `rgb(${color.r},${color.g},${color.b})`;
   }
+
+  clear_color() {
+    const chip_diode = document.getElementById(`${this.#SERIAL_NUMER}`);
+    chip_diode.style.backgroundColor = `transparent`;
+  }
 }

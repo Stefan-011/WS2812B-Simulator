@@ -49,4 +49,13 @@ window.onload = () => {
     curr_chip = curr_chip.getNext();
     iterator++;
   }, 1000);
+
+  let curr_chip2 = strip.getHead();
+  setTimeout(() => {
+    clearInterval(sender_inteval);
+    while (curr_chip2 != null) {
+      curr_chip2.clear_color();
+      curr_chip2 = curr_chip2.getNext();
+    }
+  }, 4000);
 };

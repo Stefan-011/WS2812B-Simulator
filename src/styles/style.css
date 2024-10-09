@@ -19,8 +19,9 @@ body {
 
 .title-bar {
   background-color: var(--primary-color);
+  border-bottom: 3px solid orangered;
   width: 100%;
-  height: 2rem;
+  height: 4rem;
   -webkit-app-region: drag;
   display: flex;
   flex-direction: row;
@@ -126,6 +127,7 @@ body {
   border: 2px solid black;
   height: 4rem;
   width: 4rem;
+  transition: 0.2s;
 }
 
 #cable-area {
@@ -154,21 +156,32 @@ body {
 }
 
 #data-area {
-  width: 90%;
+  width: 100%;
   background-color: red;
-  height: 20rem;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#binaryChart {
+#led-signal {
+  width: fit-content;
+  height: fit-content;
+}
+
+#signal-display {
   background-color: black;
-  height: 8rem;
-  padding: 0 8rem;
-  width: 25rem;
   border: #373737 1.2rem solid;
+}
+
+#binaryChartR,
+#binaryChartG,
+#binaryChartB {
+  background-color: black;
+  height: 12rem;
+  /* padding: 0 8rem; */
+  width: 30rem;
 }
 
 #ascii-area {

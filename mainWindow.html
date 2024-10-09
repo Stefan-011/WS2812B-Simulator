@@ -19,7 +19,10 @@
         <button id="closeBtn">X</button>
       </div>
     </div>
-   <div id="submenu-bar"> <button id="">save as</button></div>
+   <div id="submenu-bar"> 
+    <button id="">save as</button>
+    <button id="">settings</button>
+  </div>
    <div id="app-bar">
     <div id="content">
       <h2>strip</h1>
@@ -31,7 +34,7 @@
           <div id="cable-r" class="cable"></div>  
         </div>
         <div id="led-strip">
-          <div class="chip"id="1"></div>
+          <!-- <div class="chip"id="1"></div>
             <div class="chip"id="1"></div>
             <div class="chip"id="1"></div>
             <div class="chip"id="1"></div>
@@ -46,12 +49,18 @@
             <div class="chip"id="1"></div>
             <div class="chip"id="1"></div>
             <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
+            <div class="chip"id="1"></div> -->
           </div>
       </div>
         <div id="data-area">
           <h2>Signal</h2>
-          <div id="led-signal"><canvas id="binaryChart"></canvas></div>
+          <div id="led-signal">
+            <div id="signal-display">
+            <canvas id="binaryChartR"></canvas>
+            <canvas id="binaryChartG"></canvas>
+            <canvas id="binaryChartB"></canvas>
+            </div>
+          </div>
           <div id="ascii-area">
             <span>ASCII:</span>
           <span id="ascii-signal"></span>

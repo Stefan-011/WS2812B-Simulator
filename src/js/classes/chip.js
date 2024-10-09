@@ -45,8 +45,8 @@ export class chip extends node {
   #light_up() {
     let color = new RGB();
     color = toRGB(this.#RGB_BINARY, 8);
-    console.log("serial number: " + this.#SERIAL_NUMER);
-    console.log(color);
+    //console.log("serial number: " + this.#SERIAL_NUMER);
+    //console.log(color);
 
     const chip_diode = document.getElementById(`${this.#SERIAL_NUMER}`);
     chip_diode.style.backgroundColor = `rgb(${color.r},${color.g},${color.b})`;
@@ -57,11 +57,13 @@ export class chip extends node {
   clear_color() {
     const chip_diode = document.getElementById(`${this.#SERIAL_NUMER}`);
     chip_diode.style.backgroundColor = `transparent`;
+    this.#RGB_BINARY = [];
+    this.#CONDUCTOR = false;
   }
 
   #show_ascii() {
     const ascii_code = toASCII(this.#RGB_BINARY);
-    console.log(ascii_code);
+    //console.log(ascii_code);
     const span_element = document.getElementById("ascii-signal");
     span_element.innerText = `${ascii_code}`;
   }

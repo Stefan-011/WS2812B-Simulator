@@ -1,4 +1,4 @@
-import { SIGNAL_SIZE, NUM_OF_RGB, BIT_SIZE } from "./appFunctions.js";
+import { SIGNAL_SIZE, NUM_OF_RGB, BIT_SIZE } from "./constants.js";
 
 const canvas = [
   document.getElementById("binaryChartR"),
@@ -25,18 +25,19 @@ function Initilize_canvas() {
     context.strokeStyle = "lime";
     context.font = "1.2rem Consolas";
     context.fillStyle = "white";
+    context.lineWidth = 1.5;
   });
 }
 
 export function draw_one(ctx, canvas, position) {
-  console.log("draw one");
+  //console.log("draw one");
 
   ctx.fillText(
     "1",
     position * (T1H + T1L) + SIGNAL_POWER / 6,
     SIGNAL_POWER / 2
   );
-
+  ctx.beginPath();
   ctx.moveTo(position * (T1H + T1L), 0);
   ctx.lineTo(position * (T1H + T1L), canvas.height);
 
@@ -57,15 +58,15 @@ export function draw_one(ctx, canvas, position) {
   ctx.stroke();
 }
 
-export function draw_zero(ctx, canvas, position) {
-  console.log("draw zero");
+function draw_zero(ctx, canvas, position) {
+  //console.log("draw zero");
 
   ctx.fillText(
     "0",
     position * (T0H + T0L) + SIGNAL_POWER / 6,
     SIGNAL_POWER / 2
   );
-
+  ctx.beginPath();
   ctx.moveTo(position * (T0H + T0L), 0);
   ctx.lineTo(position * (T0H + T0L), canvas.height);
 
@@ -87,15 +88,17 @@ export function draw_zero(ctx, canvas, position) {
 }
 
 function clear_signal() {
-  for (let i = 0; i < NUM_OF_RGB; i++)
+  for (let i = 0; i < NUM_OF_RGB; i++) {
+    console.log(canvas[i].width);
     ctx[i].clearRect(0, 0, canvas[i].width, canvas[i].height);
-  console.log("clearing");
+  }
 }
 
 export function drawBinarySignal(binaryArray) {
   clear_signal();
   Initilize_canvas();
   for (let i = 0; i < SIGNAL_SIZE; i++) {
+    console.log(binaryArray[i]);
     if (binaryArray[i] == 0) {
       if (binaryArray[i + 1] !== null) {
         if (i <= 7) draw_zero(ctx[0], canvas[0], i % BIT_SIZE);
@@ -104,7 +107,7 @@ export function drawBinarySignal(binaryArray) {
       }
     } else {
       if (i < 8) draw_one(ctx[0], canvas[0], i % BIT_SIZE);
-      else if (i > 8 && i < 16) draw_one(ctx[1], canvas[1], i % BIT_SIZE);
+      else if (i >= 8 && i < 16) draw_one(ctx[1], canvas[1], i % BIT_SIZE);
       else draw_one(ctx[2], canvas[2], i % BIT_SIZE);
     }
   }

@@ -1,4 +1,5 @@
 import { RGB } from "./classes/rgb.js";
+import { NUM_OF_RGB, BIT_SIZE } from "./constants.js";
 
 export async function toBinary(number, bit_size) {
   return new Promise((resolve, error) => {
@@ -46,4 +47,66 @@ function bin_to_dec_helper(bit, position) {
   let bit_position = 7 - position;
   if (bit === 0) return 0;
   else return Math.pow(2, bit_position);
+}
+
+export async function getRGBBits(color) {
+  return new Promise((resolve) => {
+    let RetColorbits = [];
+    for (let i = 0; i < NUM_OF_RGB; i++) {
+      switch (i) {
+        case 0:
+          toBinary(color.r, BIT_SIZE).then((bit_array) => {
+            bit_array.forEach((bit) => {
+              RetColorbits.push(bit);
+            });
+          });
+          break;
+        case 1:
+          toBinary(color.g, BIT_SIZE).then((bit_array) => {
+            bit_array.forEach((bit) => {
+              RetColorbits.push(bit);
+            });
+          });
+          break;
+        case 2:
+          toBinary(color.b, BIT_SIZE).then((bit_array) => {
+            bit_array.forEach((bit) => {
+              RetColorbits.push(bit);
+            });
+          });
+          break;
+      }
+    }
+    resolve(RetColorbits);
+  });
+}
+
+export function getColorBits(color) {
+  let RetColorbits = [];
+  for (let i = 0; i < NUM_OF_RGB; i++) {
+    switch (i) {
+      case 0:
+        toBinary(color.r, BIT_SIZE).then((bit_array) => {
+          bit_array.forEach((bit) => {
+            RetColorbits.push(bit);
+          });
+        });
+        break;
+      case 1:
+        toBinary(color.g, BIT_SIZE).then((bit_array) => {
+          bit_array.forEach((bit) => {
+            RetColorbits.push(bit);
+          });
+        });
+        break;
+      case 2:
+        toBinary(color.b, BIT_SIZE).then((bit_array) => {
+          bit_array.forEach((bit) => {
+            RetColorbits.push(bit);
+          });
+        });
+        break;
+    }
+  }
+  return RetColorbits;
 }

@@ -54,11 +54,19 @@ export class chip extends node {
     // ATTENTION !!!
     clear_signal(); // test with multiple signals
     this.#show_signal(this.#RGB_BINARY);
+    this.#show_ascii();
   }
 
   clear_color() {
     const chip_diode = document.getElementById(`${this.#SERIAL_NUMER}`);
     chip_diode.style.backgroundColor = `transparent`;
     clear_signal();
+  }
+
+  #show_ascii() {
+    const ascii_code = toASCII(this.#RGB_BINARY);
+    console.log(ascii_code);
+    const span_element = document.getElementById("ascii-signal");
+    span_element.innerText = `${ascii_code}`;
   }
 }

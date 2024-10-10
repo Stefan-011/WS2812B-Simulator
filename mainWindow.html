@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="src/styles/style.css" />
     <title>WS2812B SIMULATOR</title>
   </head>
-  <body>
+  <body >
     <div class="title-bar" id="title-bar">
       <span class="logo-span">WS2812B SIMULATOR</span>
       <div class="control-btns">
@@ -22,11 +22,13 @@
    <div id="submenu-bar"> 
     <button id="">save as</button>
     <button id="">settings</button>
+    <button id="dark-mode-btn">dark_mode</button>
   </div>
    <div id="app-bar">
     <div id="content">
-      <h2>strip</h1>
+      
       <div id="simulator-table">
+        <h2>SIMULATION BENCH</h1>
       <div id="component-area">
         <div id="cable-area">
           <div id="cable-b" class="cable"></div>
@@ -34,26 +36,10 @@
           <div id="cable-r" class="cable"></div>  
         </div>
         <div id="led-strip">
-          <!-- <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div>
-            <div class="chip"id="1"></div> -->
           </div>
       </div>
         <div id="data-area">
-          <h2>Signal</h2>
+          <h2>SIGNAL GRAPH</h2>
           <div id="led-signal">
             <div id="signal-display">
             <canvas id="binaryChartR"></canvas>
@@ -63,17 +49,17 @@
           </div>
           <div id="ascii-area">
             <span>ASCII:</span>
-          <span id="ascii-signal"></span>
+          <div id="ascii-signal"></div>
           </div>
         </div>
       </div>
     </div>
     <div id="sim-controls">
-      <button id="red-sim">RED</button>
-      <button id="green-sim">GREEN</button>
-      <button id="blue-sim">BLUE</button>
-      <button id="rgb-sim">RGB</button>
-      <button id="bw-sim">BLACK/WHITE</button>
+      <button id="red-sim"></button>
+      <button id="green-sim"></button>
+      <button id="blue-sim"></button>
+      <button id="rgb-sim"></button>
+      <button id="bw-sim"></button>
     </div>
    </div>
   

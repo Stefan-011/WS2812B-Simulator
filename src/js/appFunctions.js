@@ -3,12 +3,25 @@ import { linkedlist } from "./classes/linkedList.js";
 import { chip } from "./classes/chip.js";
 import { RGB } from "./classes/rgb.js";
 
-const NUM_OF_CHIPS = 6;
+const NUM_OF_CHIPS = 16;
 const SIMULATION_TIME = 1000;
+const RED_BUTTON = document.getElementById("red-sim");
+const GREEN_BUTTON = document.getElementById("green-sim");
+const BLUE_BUTTON = document.getElementById("blue-sim");
+const RGB_BUTTON = document.getElementById("rgb-sim");
+const BW_BUTTON = document.getElementById("bw-sim");
+const DARK_MODE_BUTTON = document.getElementById("dark-mode-btn");
 
 const strip = new linkedlist();
 
 function start_simulation(color, colorType) {
+  changeButtonState([
+    RED_BUTTON,
+    GREEN_BUTTON,
+    BLUE_BUTTON,
+    RGB_BUTTON,
+    BW_BUTTON,
+  ]);
   let color_bits = [];
   let curr_chip = strip.getHead();
   let iterator = 1;
@@ -17,7 +30,16 @@ function start_simulation(color, colorType) {
     switch (colorType.type) {
       case "RGB":
         let sender_intevalRGB = setInterval(() => {
-          if (NUM_OF_CHIPS <= iterator) clearInterval(sender_intevalRGB);
+          if (NUM_OF_CHIPS <= iterator) {
+            clearInterval(sender_intevalRGB);
+            changeButtonState([
+              RED_BUTTON,
+              GREEN_BUTTON,
+              BLUE_BUTTON,
+              RGB_BUTTON,
+              BW_BUTTON,
+            ]);
+          }
           let RGB_color = new RGB();
           RGB_color.setFullColor(
             getRandomInt(0, 255),
@@ -38,7 +60,16 @@ function start_simulation(color, colorType) {
         second_color.setFullColor(255, 255, 255);
         let second_color_bits = getColorBits(second_color);
         let sender_intevalBW = setInterval(() => {
-          if (NUM_OF_CHIPS <= iterator) clearInterval(sender_intevalBW);
+          if (NUM_OF_CHIPS <= iterator) {
+            clearInterval(sender_intevalBW);
+            changeButtonState([
+              RED_BUTTON,
+              GREEN_BUTTON,
+              BLUE_BUTTON,
+              RGB_BUTTON,
+              BW_BUTTON,
+            ]);
+          }
           if (iterator % 2 == 0)
             second_color_bits.forEach((bit) => {
               curr_chip.receive_bit(bit);
@@ -53,7 +84,16 @@ function start_simulation(color, colorType) {
         break;
       case "non-RGB":
         let sender_intevalNoN = setInterval(() => {
-          if (NUM_OF_CHIPS <= iterator) clearInterval(sender_intevalNoN);
+          if (NUM_OF_CHIPS <= iterator) {
+            clearInterval(sender_intevalNoN);
+            changeButtonState([
+              RED_BUTTON,
+              GREEN_BUTTON,
+              BLUE_BUTTON,
+              RGB_BUTTON,
+              BW_BUTTON,
+            ]);
+          }
           color_bits.forEach((bit) => {
             //console.log(bit);
             curr_chip.receive_bit(bit);
@@ -87,12 +127,14 @@ async function clearDiodes() {
   });
 }
 
+function changeButtonState(buttons) {
+  buttons.forEach((button) => {
+    if (button.disabled) button.disabled = false;
+    else button.disabled = true;
+  });
+}
+
 window.onload = () => {
-  const RED_BUTTON = document.getElementById("red-sim");
-  const GREEN_BUTTON = document.getElementById("green-sim");
-  const BLUE_BUTTON = document.getElementById("blue-sim");
-  const RGB_BUTTON = document.getElementById("rgb-sim");
-  const BW_BUTTON = document.getElementById("bw-sim");
   let COLOR = new RGB();
   const colorType = { type: "none" };
 
@@ -115,14 +157,20 @@ window.onload = () => {
     colorType.type = "non-RGB";
     start_simulation(COLOR, colorType);
   });
+
   RGB_BUTTON.addEventListener("click", () => {
     COLOR.setFullColor(0, 0, 0);
     colorType.type = "RGB";
     start_simulation(COLOR, colorType);
   });
+
   BW_BUTTON.addEventListener("click", () => {
     COLOR.setFullColor(0, 0, 0);
     colorType.type = "black/white";
     start_simulation(COLOR, colorType);
+  });
+
+  DARK_MODE_BUTTON.addEventListener("click", () => {
+    document.body.classList.toggle("lightmode");
   });
 };

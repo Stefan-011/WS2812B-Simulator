@@ -67,4 +67,8 @@ export class chip extends node {
     const span_element = document.getElementById("ascii-signal");
     span_element.innerText = `${ascii_code}`;
   }
+
+  getBinarySignal() {
+    return this.#RGB_BINARY;
+  }
 }

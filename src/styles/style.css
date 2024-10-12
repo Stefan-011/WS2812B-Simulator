@@ -44,6 +44,21 @@ body {
   align-items: start;
   justify-content: start;
   width: 100%;
+  background-color: var(--primary-color);
+}
+
+#submenu-bar button {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: none;
+  border-right: 2px solid var(--secondary-color);
+  padding: 0.2rem;
+  margin: 0 0.2rem;
+}
+#submenu-bar button:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  transition: 0.8;
 }
 
 #app-bar {

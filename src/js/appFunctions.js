@@ -1,20 +1,16 @@
 import { getRGBBits, getColorBits } from "./converters.js";
+import { SIMULATION_TIME, NUM_OF_CHIPS } from "./constants.js";
 import { linkedlist } from "./classes/linkedList.js";
-import { chip } from "./classes/chip.js";
+import {
+  RED_BUTTON,
+  GREEN_BUTTON,
+  BLUE_BUTTON,
+  RGB_BUTTON,
+  BW_BUTTON,
+} from "./appMain.js";
 import { RGB } from "./classes/rgb.js";
 
-const NUM_OF_CHIPS = 16;
-const SIMULATION_TIME = 1000;
-const RED_BUTTON = document.getElementById("red-sim");
-const GREEN_BUTTON = document.getElementById("green-sim");
-const BLUE_BUTTON = document.getElementById("blue-sim");
-const RGB_BUTTON = document.getElementById("rgb-sim");
-const BW_BUTTON = document.getElementById("bw-sim");
-const DARK_MODE_BUTTON = document.getElementById("dark-mode-btn");
-
-const strip = new linkedlist();
-
-function start_simulation(color, colorType) {
+export function start_simulation(color, colorType, strip) {
   changeButtonState([
     RED_BUTTON,
     GREEN_BUTTON,
@@ -25,7 +21,7 @@ function start_simulation(color, colorType) {
   let color_bits = [];
   let curr_chip = strip.getHead();
   let iterator = 1;
-  clearDiodes().then(() => {
+  clearDiodes(strip).then(() => {
     color_bits = getColorBits(color);
     switch (colorType.type) {
       case "RGB":
@@ -109,14 +105,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function Initialize_chips() {
-  for (let i = 0; i < NUM_OF_CHIPS; i++) {
-    const new_chip = new chip(i * 100);
-    strip.addNode(new_chip);
-  }
-}
-
-async function clearDiodes() {
+async function clearDiodes(strip) {
   return new Promise((cleared) => {
     let curr_chip = strip.getHead();
     while (curr_chip != null) {
@@ -133,44 +122,3 @@ function changeButtonState(buttons) {
     else button.disabled = true;
   });
 }
-
-window.onload = () => {
-  let COLOR = new RGB();
-  const colorType = { type: "none" };
-
-  Initialize_chips();
-
-  RED_BUTTON.addEventListener("click", () => {
-    COLOR.setFullColor(255, 0, 0);
-    colorType.type = "non-RGB";
-    start_simulation(COLOR, colorType);
-  });
-
-  GREEN_BUTTON.addEventListener("click", () => {
-    COLOR.setFullColor(0, 255, 0);
-    colorType.type = "non-RGB";
-    start_simulation(COLOR, colorType);
-  });
-
-  BLUE_BUTTON.addEventListener("click", () => {
-    COLOR.setFullColor(0, 0, 255);
-    colorType.type = "non-RGB";
-    start_simulation(COLOR, colorType);
-  });
-
-  RGB_BUTTON.addEventListener("click", () => {
-    COLOR.setFullColor(0, 0, 0);
-    colorType.type = "RGB";
-    start_simulation(COLOR, colorType);
-  });
-
-  BW_BUTTON.addEventListener("click", () => {
-    COLOR.setFullColor(0, 0, 0);
-    colorType.type = "black/white";
-    start_simulation(COLOR, colorType);
-  });
-
-  DARK_MODE_BUTTON.addEventListener("click", () => {
-    document.body.classList.toggle("lightmode");
-  });
-};

@@ -1,3 +1,5 @@
+import { DARK_MODE_BUTTON } from "../constants.js";
+
 export class appSettings {
   #NUM_OF_CHIPS;
   #SIMULATION_TIME;
@@ -41,6 +43,7 @@ export class appSettings {
     if (this.#DARK_MODE == 0) this.#DARK_MODE = 1;
     else this.#DARK_MODE = 0;
     localStorage.setItem("DARK_MODE", this.#DARK_MODE);
+    this.#changeDarkModeIcon();
   }
 
   getNumOfChips() {
@@ -53,6 +56,18 @@ export class appSettings {
 
   getDarkMode() {
     if (this.#DARK_MODE != 1) document.body.classList.toggle("lightmode");
+    this.#changeDarkModeIcon();
     return this.#DARK_MODE;
+  }
+
+  #changeDarkModeIcon() {
+    console.log(this.#DARK_MODE);
+    if (this.#DARK_MODE == 1) {
+      DARK_MODE_BUTTON.innerText = "☀️";
+      // DARK_MODE_BUTTON.style.backgroundImage = "url('./src/img/lightMode.png')";
+    } else {
+      DARK_MODE_BUTTON.innerText = "🌙";
+      //DARK_MODE_BUTTON.style.backgroundImage = "url('./src/img/darkMode.png')";
+    }
   }
 }

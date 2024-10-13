@@ -10,6 +10,7 @@ app.on("ready", () => {
   mainWindow = new BrowserWindow({
     minHeight: 400,
     minWidth: 400,
+    icon: __dirname + "/appIcon.ico",
     transparent: false,
     frame: false,
     webPreferences: {

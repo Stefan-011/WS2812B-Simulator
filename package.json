@@ -18,5 +18,14 @@
   "homepage": "https://github.com/Stefan-011/WS2812B-Simulator#readme",
   "devDependencies": {
     "electron": "^32.1.2"
+  },
+  "build": {
+    "appId": "com.WS2812B-Simulator.id",
+    "win": {
+      "icon": "/appIcon.ico"
+    },
+    "mac": {
+      "icon": "/appIcon.ico"
+    }
   }
 }

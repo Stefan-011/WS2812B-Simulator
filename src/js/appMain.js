@@ -2,26 +2,35 @@ import { linkedlist } from "./classes/linkedList.js";
 import { chip } from "./classes/chip.js";
 import { RGB } from "./classes/rgb.js";
 import { start_simulation } from "./appFunctions.js";
-import { NUM_OF_CHIPS } from "./constants.js";
+import { appSettings } from "./classes/appSettings.js";
+import {
+  RED_BUTTON,
+  GREEN_BUTTON,
+  BLUE_BUTTON,
+  RGB_BUTTON,
+  BW_BUTTON,
+  DARK_MODE_BUTTON,
+  SAVE_AS_BUTTON,
+  DELAY_INPUT,
+  SAVE_SETTING_BUTTON,
+  CHIP_INPUT,
+} from "./constants.js";
 
-export const RED_BUTTON = document.getElementById("red-sim");
-export const GREEN_BUTTON = document.getElementById("green-sim");
-export const BLUE_BUTTON = document.getElementById("blue-sim");
-export const RGB_BUTTON = document.getElementById("rgb-sim");
-export const BW_BUTTON = document.getElementById("bw-sim");
-export const DARK_MODE_BUTTON = document.getElementById("dark-mode-btn");
+const _setting = new appSettings();
+export let SIMULATION_TIME = _setting.getSimulationTime();
+export let NUM_OF_CHIPS = _setting.getNumOfChips();
 
-const strip = new linkedlist();
+const LED_STRIP = new linkedlist();
 
 function Initialize_chips() {
   for (let i = 0; i < NUM_OF_CHIPS; i++) {
     const new_chip = new chip(i * 100);
-    strip.addNode(new_chip);
+    LED_STRIP.addNode(new_chip);
   }
 }
 function getAllBinary() {
   let RetVal = "";
-  let curr_chip = strip.getHead();
+  let curr_chip = LED_STRIP.getHead();
 
   while (curr_chip != null) {
     curr_chip.getBinarySignal().forEach((bit) => {
@@ -33,7 +42,9 @@ function getAllBinary() {
   }
   return RetVal;
 }
+
 window.onload = () => {
+  _setting.getDarkMode();
   let COLOR = new RGB();
   const colorType = { type: "none" };
 
@@ -42,35 +53,36 @@ window.onload = () => {
   RED_BUTTON.addEventListener("click", () => {
     COLOR.setFullColor(255, 0, 0);
     colorType.type = "non-RGB";
-    start_simulation(COLOR, colorType, strip);
+    start_simulation(COLOR, colorType, LED_STRIP);
   });
 
   GREEN_BUTTON.addEventListener("click", () => {
     COLOR.setFullColor(0, 255, 0);
     colorType.type = "non-RGB";
-    start_simulation(COLOR, colorType, strip);
+    start_simulation(COLOR, colorType, LED_STRIP);
   });
 
   BLUE_BUTTON.addEventListener("click", () => {
     COLOR.setFullColor(0, 0, 255);
     colorType.type = "non-RGB";
-    start_simulation(COLOR, colorType, strip);
+    start_simulation(COLOR, colorType, LED_STRIP);
   });
 
   RGB_BUTTON.addEventListener("click", () => {
     COLOR.setFullColor(0, 0, 0);
     colorType.type = "RGB";
-    start_simulation(COLOR, colorType, strip);
+    start_simulation(COLOR, colorType, LED_STRIP);
   });
 
   BW_BUTTON.addEventListener("click", () => {
     COLOR.setFullColor(0, 0, 0);
     colorType.type = "black/white";
-    start_simulation(COLOR, colorType, strip);
+    start_simulation(COLOR, colorType, LED_STRIP);
   });
 
   DARK_MODE_BUTTON.addEventListener("click", () => {
     document.body.classList.toggle("lightmode");
+    _setting.changeDarkMode();
   });
 
   SAVE_AS_BUTTON.addEventListener("click", async () => {
@@ -86,5 +98,12 @@ window.onload = () => {
     const content = getAllBinary();
     await writableStream.write(content);
     await writableStream.close();
+  });
+
+  SAVE_SETTING_BUTTON.addEventListener("click", () => {
+    console.log(CHIP_INPUT);
+    _setting.changeNumOfChips(CHIP_INPUT.value);
+    _setting.changeSimulationTime(DELAY_INPUT.value);
+    window.location.reload();
   });
 };

@@ -21,12 +21,11 @@
     </div>
    <div id="submenu-bar"> 
     <button id="save-as-btn">save as</button>
-    <button id="">settings</button>
+    <button id="setting-menu">settings</button>
     <button id="dark-mode-btn">dark_mode</button>
   </div>
    <div id="app-bar">
     <div id="content">
-     
       <div id="simulator-table">
         <h2>SIMULATION BENCH</h1>
           <div id="sim-controls">
@@ -36,6 +35,17 @@
             <button id="rgb-sim"></button>
             <button id="bw-sim"></button>
           </div>
+         <div id="settings-area"> 
+          <div class="setting-element">
+            <label>CHIPS</label>
+            <input type="number" id="chipInput" min="0" max="100" step="1" placeholder="">
+          </div>
+          <div class="setting-element">
+            <label>DELAY</label>
+          <input type="number" id="delayInput" min="0" max="100" step="1" placeholder="ms">
+        </div>
+          <button id="save-setting-btn">SAVE</button>
+        </div>
       <div id="component-area">
         <div id="cable-area">
           <div id="cable-b" class="cable"></div>
@@ -65,7 +75,7 @@
    </div>
   
     <script type="module" src="src/js/appMain.js"></script>
-    <script src="src/js/eventFunctions.js"></script>
+    <script type="module" src="src/js/eventFunctions.js"></script>
     <script type="module" src="src/js/converters.js"></script>
   </body>
 </html>

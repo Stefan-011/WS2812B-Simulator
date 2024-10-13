@@ -1,5 +1,5 @@
 import { getRGBBits, getColorBits } from "./converters.js";
-import { SIMULATION_TIME, NUM_OF_CHIPS } from "./constants.js";
+import { SIMULATION_TIME, NUM_OF_CHIPS } from "./appMain.js";
 import { linkedlist } from "./classes/linkedList.js";
 import {
   RED_BUTTON,
@@ -7,7 +7,7 @@ import {
   BLUE_BUTTON,
   RGB_BUTTON,
   BW_BUTTON,
-} from "./appMain.js";
+} from "./constants.js";
 import { RGB } from "./classes/rgb.js";
 
 export function start_simulation(color, colorType, strip) {

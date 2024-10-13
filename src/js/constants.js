@@ -1,6 +1,14 @@
 export const SIGNAL_SIZE = 24;
 export const NUM_OF_RGB = 3;
 export const BIT_SIZE = 8;
-export const SIGNAL_POWER = 60;
-export const NUM_OF_CHIPS = 16;
-export const SIMULATION_TIME = 500;
+export const RED_BUTTON = document.getElementById("red-sim");
+export const GREEN_BUTTON = document.getElementById("green-sim");
+export const BLUE_BUTTON = document.getElementById("blue-sim");
+export const RGB_BUTTON = document.getElementById("rgb-sim");
+export const BW_BUTTON = document.getElementById("bw-sim");
+export const DARK_MODE_BUTTON = document.getElementById("dark-mode-btn");
+export const SAVE_SETTING_BUTTON = document.getElementById("save-setting-btn");
+export const DELAY_INPUT = document.getElementById("delayInput");
+export const CHIP_INPUT = document.getElementById("chipInput");
+export const SAVE_AS_BUTTON = document.getElementById("save-as-btn");
+export const SETTINGS_MENU_BTN = document.getElementById("setting-menu");

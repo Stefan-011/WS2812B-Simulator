@@ -30,8 +30,6 @@ function Initilize_canvas() {
 }
 
 export function draw_one(ctx, canvas, position) {
-  //console.log("draw one");
-
   ctx.fillText(
     "1",
     position * (T1H + T1L) + SIGNAL_POWER / 6,
@@ -59,8 +57,6 @@ export function draw_one(ctx, canvas, position) {
 }
 
 function draw_zero(ctx, canvas, position) {
-  //console.log("draw zero");
-
   ctx.fillText(
     "0",
     position * (T0H + T0L) + SIGNAL_POWER / 6,
@@ -89,7 +85,6 @@ function draw_zero(ctx, canvas, position) {
 
 function clear_signal() {
   for (let i = 0; i < NUM_OF_RGB; i++) {
-    console.log(canvas[i].width);
     ctx[i].clearRect(0, 0, canvas[i].width, canvas[i].height);
   }
 }
@@ -98,7 +93,6 @@ export function drawBinarySignal(binaryArray) {
   clear_signal();
   Initilize_canvas();
   for (let i = 0; i < SIGNAL_SIZE; i++) {
-    console.log(binaryArray[i]);
     if (binaryArray[i] == 0) {
       if (binaryArray[i + 1] !== null) {
         if (i <= 7) draw_zero(ctx[0], canvas[0], i % BIT_SIZE);

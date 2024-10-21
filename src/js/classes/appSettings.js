@@ -9,7 +9,7 @@ export class appSettings {
   constructor() {
     if (
       localStorage.getItem("NUM_OF_CHIPS") == null ||
-      localStorage.getItem("NUM_OF_CHIPS") > 100
+      localStorage.getItem("NUM_OF_CHIPS") >= 100
     ) {
       this.#NUM_OF_CHIPS = 16;
       localStorage.setItem("NUM_OF_CHIPS", 16);
@@ -17,7 +17,7 @@ export class appSettings {
 
     if (
       localStorage.getItem("SIMULATION_TIME") == null ||
-      localStorage.getItem("SIMULATION_TIME") > 6000
+      localStorage.getItem("SIMULATION_TIME") >= 8000
     ) {
       localStorage.setItem("SIMULATION_TIME", 1000);
       this.#SIMULATION_TIME = 1000;
@@ -34,10 +34,11 @@ export class appSettings {
   }
 
   changeNumOfChips(value) {
-    if (value > 0) localStorage.setItem("NUM_OF_CHIPS", value);
+    if (value > 0 && value <= 100) localStorage.setItem("NUM_OF_CHIPS", value);
   }
   changeSimulationTime(value) {
-    if (value > 0) localStorage.setItem("SIMULATION_TIME", value);
+    if (value > 0 && value <= 8000)
+      localStorage.setItem("SIMULATION_TIME", value);
   }
   changeDarkMode() {
     if (this.#DARK_MODE == 0) this.#DARK_MODE = 1;
@@ -61,13 +62,10 @@ export class appSettings {
   }
 
   #changeDarkModeIcon() {
-    console.log(this.#DARK_MODE);
     if (this.#DARK_MODE == 1) {
       DARK_MODE_BUTTON.innerText = "☀️";
-      // DARK_MODE_BUTTON.style.backgroundImage = "url('./src/img/lightMode.png')";
     } else {
       DARK_MODE_BUTTON.innerText = "🌙";
-      //DARK_MODE_BUTTON.style.backgroundImage = "url('./src/img/darkMode.png')";
     }
   }
 }

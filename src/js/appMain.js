@@ -17,10 +17,9 @@ import {
 } from "./constants.js";
 
 const _setting = new appSettings();
+const LED_STRIP = new linkedlist();
 export let SIMULATION_TIME = _setting.getSimulationTime();
 export let NUM_OF_CHIPS = _setting.getNumOfChips();
-
-const LED_STRIP = new linkedlist();
 
 function Initialize_chips() {
   for (let i = 0; i < NUM_OF_CHIPS; i++) {
@@ -28,6 +27,7 @@ function Initialize_chips() {
     LED_STRIP.addNode(new_chip);
   }
 }
+
 function getAllBinary() {
   let RetVal = "";
   let curr_chip = LED_STRIP.getHead();
@@ -101,7 +101,6 @@ window.onload = () => {
   });
 
   SAVE_SETTING_BUTTON.addEventListener("click", () => {
-    console.log(CHIP_INPUT);
     _setting.changeNumOfChips(CHIP_INPUT.value);
     _setting.changeSimulationTime(DELAY_INPUT.value);
     window.location.reload();

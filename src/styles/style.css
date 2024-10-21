@@ -9,21 +9,15 @@
 
 .lightmode {
   --primary-color: #e5e6e6;
-  --secondary-color: #031f4d;
-  --background-color: #baa9a9;
+  --secondary-color: #252525;
+  /* --secondary-color: #031f4d; -- other solution blue */
+  --background-color: #acaaaa;
   --light-shade: #808080;
-
-  /* #595959 - some gray
- #DCE0D9 - some platinum
- #808F85 - battleship gray 
- rgb(74, 146, 74) - some green
- */
 }
 
 body {
   margin: 0;
   background-color: var(--background-color);
-  /*  width: 100vh;*/
   height: 100vh;
   color: var(--secondary-color);
   display: flex;
@@ -64,7 +58,6 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  margin-top: 0.4rem;
   height: 1.4rem;
   width: 1.4rem;
   margin-right: 5rem;
@@ -76,11 +69,11 @@ body {
   border: none;
   border-right: 2px solid var(--title-bar-text);
   padding: 0.2rem;
-  margin: 0 0.2rem;
   width: fit-content;
-  height: fit-content;
-  font-size: 1.1rem;
+  height: 100%;
+  font-size: 1.2rem;
 }
+
 #submenu-bar button:hover {
   background-color: var(--title-bar-text);
   color: var(--primary-color);
@@ -141,7 +134,6 @@ body {
 }
 
 #simulator-table {
-  /* background-color: rgba(0, 255, 0, 0.5); */
   width: 100%;
   height: 100%;
   display: flex;
@@ -151,7 +143,6 @@ body {
 }
 
 #component-area {
-  /* background-color: blueviolet; */
   width: 100%;
   height: fit-content;
   display: flex;
@@ -208,7 +199,6 @@ body {
 
 #data-area {
   width: 100%;
-  /* background-color: red; */
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -241,11 +231,12 @@ body {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  border: 1px solid var(--secondary-color);
+  border: 0.4rem solid var(--secondary-color);
   font-size: 1.5rem;
   width: fit-content;
   max-width: 100%;
   margin: 5rem 0;
+  padding: 0.4rem 0;
 }
 
 #ascii-signal {
@@ -262,7 +253,6 @@ body {
 }
 
 #sim-controls {
-  /* margin-top: 3rem; */
   width: 100%;
   height: fit-content;
   background-color: transparent;
@@ -377,25 +367,48 @@ body {
   transition: 0.4s;
 }
 
+#overflow-alert {
+  width: 16rem;
+  height: 3rem;
+  background-color: rgba(255, 0, 0, 0.8);
+  border-left: 0.3rem solid var(--secondary-color);
+  display: none;
+  align-items: center;
+  justify-content: start;
+  margin: 1rem;
+  opacity: 0;
+  transition: 0.8s;
+}
+
+#overflow-alert label {
+  margin-left: 1.6rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 ::-webkit-scrollbar {
-  width: 12px; /* Width of the scrollbar */
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--light-shade); /* Background of the track */
+  background: var(--light-shade);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary-color); /* Color of the scrollbar thumb */
-  border-radius: 6px; /* Roundness of the thumb */
+  background: var(--secondary-color);
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--title-bar-color); /* Color on hover */
+  background: var(--title-bar-color);
 }
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+input::-webkit-input-placeholder {
+  color: var(--secondary-color);
 }

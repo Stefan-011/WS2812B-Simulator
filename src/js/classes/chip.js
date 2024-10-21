@@ -2,6 +2,8 @@ import { node } from "./linkedList.js";
 import { toASCII, toRGB } from "../converters.js";
 import { RGB } from "./rgb.js";
 import { drawBinarySignal } from "../drawing_signal.js";
+import { SIGNAL_SIZE } from "../constants.js";
+
 export class chip extends node {
   #RGB_BINARY = [];
   #SERIAL_NUMER;
@@ -28,7 +30,7 @@ export class chip extends node {
       this.#conduct(bit);
       return;
     }
-    if (this.#RGB_BINARY.length == 24) {
+    if (this.#RGB_BINARY.length == SIGNAL_SIZE) {
       this.#CONDUCTOR = true;
       this.#light_up();
     }
@@ -45,9 +47,6 @@ export class chip extends node {
   #light_up() {
     let color = new RGB();
     color = toRGB(this.#RGB_BINARY, 8);
-    //console.log("serial number: " + this.#SERIAL_NUMER);
-    //console.log(color);
-
     const chip_diode = document.getElementById(`${this.#SERIAL_NUMER}`);
     chip_diode.style.backgroundColor = `rgb(${color.r},${color.g},${color.b})`;
     this.#show_signal(this.#RGB_BINARY);
@@ -63,7 +62,6 @@ export class chip extends node {
 
   #show_ascii() {
     const ascii_code = toASCII(this.#RGB_BINARY);
-    //console.log(ascii_code);
     const span_element = document.getElementById("ascii-signal");
     span_element.innerText = `${ascii_code}`;
   }

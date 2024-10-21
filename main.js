@@ -8,8 +8,8 @@ let mainWindow;
 
 app.on("ready", () => {
   mainWindow = new BrowserWindow({
-    minHeight: 400,
-    minWidth: 400,
+    minHeight: 500,
+    minWidth: 600,
     icon: __dirname + "/appIcon.ico",
     transparent: false,
     frame: false,

@@ -1,6 +1,5 @@
 import { getRGBBits, getColorBits } from "./converters.js";
 import { SIMULATION_TIME, NUM_OF_CHIPS } from "./appMain.js";
-import { linkedlist } from "./classes/linkedList.js";
 import {
   RED_BUTTON,
   GREEN_BUTTON,
@@ -45,7 +44,6 @@ export function start_simulation(color, colorType, strip) {
           getRGBBits(RGB_color).then((RGB_bits) => {
             RGB_bits.forEach((bit) => {
               curr_chip.receive_bit(bit);
-              console.log(bit);
             });
             iterator++;
           });
@@ -91,7 +89,6 @@ export function start_simulation(color, colorType, strip) {
             ]);
           }
           color_bits.forEach((bit) => {
-            //console.log(bit);
             curr_chip.receive_bit(bit);
           });
           iterator++;

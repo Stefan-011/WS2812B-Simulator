@@ -12,3 +12,4 @@ export const DELAY_INPUT = document.getElementById("delayInput");
 export const CHIP_INPUT = document.getElementById("chipInput");
 export const SAVE_AS_BUTTON = document.getElementById("save-as-btn");
 export const SETTINGS_MENU_BTN = document.getElementById("setting-menu");
+export const OVERFLOW_ALERT = document.getElementById("overflow-alert");

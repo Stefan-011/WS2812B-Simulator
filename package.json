@@ -1,10 +1,11 @@
 {
   "name": "ws2812b-simulator",
   "version": "1.0.0",
-  "description": "\"# WS2812B-Simulator\"",
+  "description": "WS2812B-Simulator",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -17,15 +18,33 @@
   },
   "homepage": "https://github.com/Stefan-011/WS2812B-Simulator#readme",
   "devDependencies": {
-    "electron": "^32.1.2"
+    "electron": "^32.1.2",
+    "electron-builder": "^25.1.8"
   },
   "build": {
     "appId": "com.WS2812B-Simulator.id",
+    "productName": "WS2812B-Simulator",
+    "directories": {
+      "output": "build"
+    },
     "win": {
-      "icon": "/appIcon.ico"
+      "icon": "/appIcon.ico",
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "appIcon.ico",
+      "uninstallerIcon": "appIcon.ico",
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     },
     "mac": {
-      "icon": "/appIcon.ico"
+      "icon": "/appIcon.ico",
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": "AppImage"
     }
   }
 }

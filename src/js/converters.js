@@ -30,10 +30,10 @@ export function toRGB(signal, bits_per_block) {
     for (let j = i * bits_per_block; j < bits_per_block * (i + 1); j++) {
       switch (i) {
         case 0:
-          RetVal.r += bin_to_dec_helper(signal[j], j);
+          RetVal.g += bin_to_dec_helper(signal[j], j);
           break;
         case 1:
-          RetVal.g += bin_to_dec_helper(signal[j], j - bits_per_block * i);
+          RetVal.r += bin_to_dec_helper(signal[j], j - bits_per_block * i);
           break;
         case 2:
           RetVal.b += bin_to_dec_helper(signal[j], j - bits_per_block * i);
@@ -55,14 +55,14 @@ export async function getRGBBits(color) {
     for (let i = 0; i < NUM_OF_RGB; i++) {
       switch (i) {
         case 0:
-          toBinary(color.r, BIT_SIZE).then((bit_array) => {
+          toBinary(color.g, BIT_SIZE).then((bit_array) => {
             bit_array.forEach((bit) => {
               RetColorbits.push(bit);
             });
           });
           break;
         case 1:
-          toBinary(color.g, BIT_SIZE).then((bit_array) => {
+          toBinary(color.r, BIT_SIZE).then((bit_array) => {
             bit_array.forEach((bit) => {
               RetColorbits.push(bit);
             });
@@ -86,14 +86,14 @@ export function getColorBits(color) {
   for (let i = 0; i < NUM_OF_RGB; i++) {
     switch (i) {
       case 0:
-        toBinary(color.r, BIT_SIZE).then((bit_array) => {
+        toBinary(color.g, BIT_SIZE).then((bit_array) => {
           bit_array.forEach((bit) => {
             RetColorbits.push(bit);
           });
         });
         break;
       case 1:
-        toBinary(color.g, BIT_SIZE).then((bit_array) => {
+        toBinary(color.r, BIT_SIZE).then((bit_array) => {
           bit_array.forEach((bit) => {
             RetColorbits.push(bit);
           });
